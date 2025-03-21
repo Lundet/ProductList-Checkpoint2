@@ -20,11 +20,13 @@ public class Program
 {
     public static void Main()
     {
+        // List to store products
         List<Product> products = new List<Product>();
         bool running = true;
-
+        // Main loop to keep the program running
         while (running)
         {
+            // Display the menu
             Console.WriteLine("--------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("To enter a product 'p', To search for a product enter 's', To quit enter 'q'");
@@ -58,7 +60,7 @@ public class Program
                     var sortedProducts = products.OrderBy(p => p.Price);
 
                     // Display the sorted product list (Low to High by Price)
-                    Console.WriteLine("\nUpdated Product List:");
+                    Console.WriteLine("\nUpdated Product List:(Low to high)");
                     decimal total = sortedProducts.Sum(p => p.Price); // LINQ to calculate total
                     foreach (var product in sortedProducts)
                     {
@@ -106,15 +108,5 @@ public class Program
                 Console.WriteLine("\nInvalid input. Please try again.");
             }
         }
-
-        // After quitting, display the final sorted product list (Low to High by Price) and calculate total
-        var finalSortedProducts = products.OrderBy(p => p.Price).ToList();
-        Console.WriteLine("\nFinal Product List:");
-        decimal finalTotal = finalSortedProducts.Sum(p => p.Price); // Using LINQ to calculate total
-        foreach (var product in finalSortedProducts)
-        {
-            Console.WriteLine($"Name: {product.Name}, Category: {product.Category}, Price: {product.Price}");
-        }
-        Console.WriteLine($"\nFinal Total Price: {finalTotal}");
     }
 }
